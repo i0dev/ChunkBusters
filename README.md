@@ -2,13 +2,19 @@
 This plugin allows you to craft/give yourself or others a ChunkBuster, which you can place down, and it will destroy every block inside of the chunk!
 This is a PLUGIN, and it goes into your plugins folder on your server. It will not work if its anywhere else!
 
-## How it works,
+## How it works:
 You can craft a chunk buster, OR give it with the /chunkbuster give command, Then you can place it down anywhere you have access to, and it will destroy all the blocks 
 In the chunk. There is a blacklist for blocks to not be broken. The plugin fully configurable including messaging!
 
-### Permissions,
+### Commands:
+*Values in **[]** are required, values in **<>** are optional*
+ - ```/chunkbuster reload```                   - ``Reloads the plugin.``
+ - ```/chunkbuster give [Player] <Amount>```   - ``Reloads the plugin.``
+
+
+### Permissions:
  - ```chunkbuster.*```        - ``Gives permissions to run any command.``
- - ```chunkbuster.give```        - ``Gives permissions to use /chunkbuster give.``
+ - ```chunkbuster.give```     - ``Gives permissions to use /chunkbuster give.``
  - ```chunkbuster.reload.```  - ``Gives permissions to use /chunkbuster reload.``
  
 ### Config.yml, with comments explaining everything.
