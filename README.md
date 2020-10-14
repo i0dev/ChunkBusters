@@ -9,7 +9,7 @@ In the chunk. There is a blacklist for blocks to not be broken. The plugin fully
 ### Commands:
 *Values in **[]** are required, values in **<>** are optional*
  - ```/chunkbuster reload```                   - ``Reloads the plugin.``
- - ```/chunkbuster give [Player] <Amount>```   - ``Reloads the plugin.``
+ - ```/chunkbuster give [Player] <Amount>```   - ``Gives a player a ChunkBuster.``
 
 
 ### Permissions:
