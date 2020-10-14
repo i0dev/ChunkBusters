@@ -12,7 +12,7 @@ In the chunk. There is a blacklist for blocks to not be broken. The plugin fully
  - ```chunkbuster.reload.```  - ``Gives permissions to use /chunkbuster reload.``
  
 ### Config.yml, with comments explaining everything.
-```
+```yaml
 ###########################################
 #                                         #
 #      Plugin made by i01 @i0dev.com      #
