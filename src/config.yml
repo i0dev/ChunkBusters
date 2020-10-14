@@ -60,6 +60,7 @@ GeneralConfig:
   Chunk_Buster_Craft_Enabled: true
   #This is to enable/disable the ChunkBuster item glowing in your inventory.
   Chunk_Buster_Item_Glow_Enabled: true
+  #This is to enable/disable the ChunkBuster particle, sound & lightning effects when placing a ChunkBuster
   Chunk_Buster_Effects_Enabled: true
   #This is the material type that the ChunkBuster is.
   Chunk_Buster_Item_Material: ENDER_PORTAL_FRAME
@@ -96,7 +97,9 @@ Messaging:
   Chunk_Buster_Place_No_Permission: '&4You do not have &cchunkbusters.place &4permission!'
   #This is the message that sends when you don't have permission to reload the plugin.
   Reload_No_Permission: '&4You do not have &cchunkbusters.reload &4permission!'
+  #This is the message that sends when you don't have permission to craft a ChunkBuster.
   Chunk_Buster_Craft_No_Permission: '&4You do not have &cchunkbusters.craft &4permission!'
+  #This is the message that sends when you don't have successfully crafted a ChunkBuster.
   Chunk_Buster_Craft_Success: '&a&lYou successfully crafted a ChunkBuster!'
 #Here is the crafting recipe for the chunk buster. You can disable this if you want in the GeneralConfig section
 #The order of slots is from top left, and ends at the bottom right. You can input any material you wish.
