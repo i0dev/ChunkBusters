@@ -15,7 +15,9 @@ In the chunk. There is a blacklist for blocks to not be broken. The plugin fully
 ### Permissions:
  - ```chunkbuster.*```        - ``Gives permissions to run any command.``
  - ```chunkbuster.give```     - ``Gives permissions to use /chunkbuster give.``
- - ```chunkbuster.reload```  - ``Gives permissions to use /chunkbuster reload.``
+ - ```chunkbuster.place```    - ``Gives permissions to place chunkbusters.``
+ - ```chunkbuster.reload```   - ``Gives permissions to use /chunkbuster reload.``
+ - ```chunkbuster.craft```    - ``Gives permissions to craft chunkbusters.``
  
 ### Config.yml, with comments explaining everything.
 ```yaml
@@ -24,17 +26,19 @@ In the chunk. There is a blacklist for blocks to not be broken. The plugin fully
 #      Plugin made by i01 @i0dev.com      #
 #                                         #
 ###########################################
+# Support Server > https://discord.gg/w6y3Xsw
 #
 # This plugin only has 2 simple commands.
 #   - /chunkbuster give [player] <amount>
 #   - /chunkbuster reload
 #
-# There are 4 permissions as well! don't forget to assign the proper people
+# There are 5 permissions as well! don't forget to assign the proper people
 # the correct permissions
 #   - chunkbuster.*      > Gives all permissions inside the plugin.
 #   - chunkbuster.place  > Gives permissions to place chunk busters.
 #   - chunkbuster.give   > Gives permissions to give chunk busters.
 #   - chunkbuster.reload > Gives permissions to reload the plugin.
+#   - chunkbuster.craft  > Gives permissions to craft chunk busters.
 #
 # [!] After you make any changes to config, you need to use /chunkbuster reload, for the changes
 # to apply in game!
@@ -77,6 +81,8 @@ GeneralConfig:
   Chunk_Buster_Craft_Enabled: true
   #This is to enable/disable the ChunkBuster item glowing in your inventory.
   Chunk_Buster_Item_Glow_Enabled: true
+  #This is to enable/disable the ChunkBuster particle, sound & lightning effects when placing a ChunkBuster
+  Chunk_Buster_Effects_Enabled: true
   #This is the material type that the ChunkBuster is.
   Chunk_Buster_Item_Material: ENDER_PORTAL_FRAME
 
@@ -112,8 +118,10 @@ Messaging:
   Chunk_Buster_Place_No_Permission: '&4You do not have &cchunkbusters.place &4permission!'
   #This is the message that sends when you don't have permission to reload the plugin.
   Reload_No_Permission: '&4You do not have &cchunkbusters.reload &4permission!'
-
-
+  #This is the message that sends when you don't have permission to craft a ChunkBuster.
+  Chunk_Buster_Craft_No_Permission: '&4You do not have &cchunkbusters.craft &4permission!'
+  #This is the message that sends when you don't have successfully crafted a ChunkBuster.
+  Chunk_Buster_Craft_Success: '&a&lYou successfully crafted a ChunkBuster!'
 #Here is the crafting recipe for the chunk buster. You can disable this if you want in the GeneralConfig section
 #The order of slots is from top left, and ends at the bottom right. You can input any material you wish.
 #If you want it to be a blank spot, just put `AIR`.
@@ -130,7 +138,7 @@ CraftingRecipe:
   Crafting_Recipe_Slot_9: ENDER_STONE
 
 #DO NOT TOUCH! This will break your config if you change this
-Config_Version_DO_NOT_CHANGE: 1.0.0
+Config_Version_DO_NOT_CHANGE: 1.0.1
 ```
 
 ## Need help? 
