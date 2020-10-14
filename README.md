@@ -34,7 +34,7 @@ In the chunk. There is a blacklist for blocks to not be broken. The plugin fully
 #   - chunkbuster.*      > Gives all permissions inside the plugin.
 #   - chunkbuster.place  > Gives permissions to place chunk busters.
 #   - chunkbuster.give   > Gives permissions to give chunk busters.
-#   - chunkbuster.reload > Gives permissions to reload the plugin
+#   - chunkbuster.reload > Gives permissions to reload the plugin.
 #
 # [!] After you make any changes to config, you need to use /chunkbuster reload, for the changes
 # to apply in game!
