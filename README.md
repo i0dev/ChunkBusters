@@ -69,6 +69,7 @@ GeneralConfig:
   #To configure the crafting recipe,
   #Scroll down and change the materials for each slot in the crafting table!
   Chunk_Buster_Craft_Enabled: true
+  #This is to enable/disable the ChunkBuster item glowing in your inventory.
   Chunk_Buster_Item_Glow_Enabled: true
   #This is the material type that the ChunkBuster is.
   Chunk_Buster_Item_Material: ENDER_PORTAL_FRAME
@@ -110,7 +111,7 @@ Messaging:
 #Here is the crafting recipe for the chunk buster. You can disable this if you want in the GeneralConfig section
 #The order of slots is from top left, and ends at the bottom right. You can input any material you wish.
 #If you want it to be a blank spot, just put `AIR`.
-#The default crafting is show in this screenshot: https://gyazo.com/83d680867f88ac55ac7d2b11dc742614
+#The default crafting is shown in this screenshot: https://gyazo.com/83d680867f88ac55ac7d2b11dc742614
 CraftingRecipe:
   Crafting_Recipe_Slot_1: AIR
   Crafting_Recipe_Slot_2: TNT
