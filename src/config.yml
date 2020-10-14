@@ -117,4 +117,4 @@ CraftingRecipe:
   Crafting_Recipe_Slot_9: ENDER_STONE
 
 #DO NOT TOUCH! This will break your config if you change this
-Config_Version_DO_NOT_CHANGE: 1.0.0
+Config_Version_DO_NOT_CHANGE: 1.0.1
