@@ -17,9 +17,12 @@ permissions:
       chunkbuster.reload: true
       chunkbuster.give: true
       chunkbuster.place: true
+      chunkbuster.craft: true
   chunkbuster.reload:
     description: Gives you permission to reload ChunkBusters plugin.
   chunkbuster.give:
     description: Gives you permission to give others ChunkBusters.
   chunkbuster.place:
     description: Gives you permission to place ChunkBusters.
+  chunkbuster.craft:
+    description: Gives you permission to craft ChunkBusters.

@@ -28,6 +28,8 @@ public class Main extends JavaPlugin {
     public static String Chunk_Buster_Give_Amount_Error;
     public static String Chunk_Buster_Give_Success;
     public static String Chunk_Buster_Give_No_Permission;
+    public static String Chunk_Buster_Craft_Success;
+    public static String Chunk_Buster_Craft_No_Permission;
 
     public static String Chunk_Buster_Place_Success;
     public static String Chunk_Buster_Place_No_Permission;
@@ -51,6 +53,7 @@ public class Main extends JavaPlugin {
 
 
     public static boolean Chunk_Buster_Craft_Enabled;
+    public static boolean Chunk_Buster_Effects_Enabled;
 
     public static String generalConfigPrefix = "GeneralConfig.";
     public static String messagingConfigPrefix = "Messaging.";
@@ -68,6 +71,7 @@ public class Main extends JavaPlugin {
         Chunk_Buster_Ignored_Materials = (ArrayList<String>) getConfig().getList(generalConfigPrefix + "Chunk_Buster_Ignored_Materials");
         Chunk_Buster_Craft_Enabled = getConfig().getBoolean(generalConfigPrefix + "Chunk_Buster_Craft_Enabled");
         Chunk_Buster_Item_Glow_Enabled = getConfig().getBoolean(generalConfigPrefix + "Chunk_Buster_Item_Glow_Enabled");
+        Chunk_Buster_Effects_Enabled = getConfig().getBoolean(generalConfigPrefix + "Chunk_Buster_Effects_Enabled");
 
         Reload_Successful = getConfig().getString(messagingConfigPrefix + "Reload_Successful");
         Reload_Usage = getConfig().getString(messagingConfigPrefix + "Reload_Usage");
@@ -81,6 +85,9 @@ public class Main extends JavaPlugin {
         Chunk_Buster_Received = getConfig().getString(messagingConfigPrefix + "Chunk_Buster_Received");
         Chunk_Buster_Place_Success = getConfig().getString(messagingConfigPrefix + "Chunk_Buster_Place_Success");
         Chunk_Buster_Place_No_Permission = getConfig().getString(messagingConfigPrefix + "Chunk_Buster_Place_No_Permission");
+
+        Chunk_Buster_Craft_Success = getConfig().getString(messagingConfigPrefix + "Chunk_Buster_Craft_Success");
+        Chunk_Buster_Craft_No_Permission = getConfig().getString(messagingConfigPrefix + "Chunk_Buster_Craft_No_Permission");
 
         Crafting_Recipe_Slot_1 = getConfig().getString(craftingRecipePrefix + "Crafting_Recipe_Slot_1");
         Crafting_Recipe_Slot_2 = getConfig().getString(craftingRecipePrefix + "Crafting_Recipe_Slot_2");
@@ -203,7 +210,7 @@ public class Main extends JavaPlugin {
     }
 
 
-    public ItemStack CreateChunkBuster(int amount) {
+    public static ItemStack CreateChunkBuster(int amount) {
         ItemStack chunkBuster = new ItemStack(Material.getMaterial(Chunk_Buster_Item_Material.toUpperCase()), amount);
         ItemMeta ChunkBusterMeta = chunkBuster.getItemMeta();
         ChunkBusterMeta.setDisplayName(color(Chunk_Buster_Name));
