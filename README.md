@@ -15,7 +15,7 @@ In the chunk. There is a blacklist for blocks to not be broken. The plugin fully
 ### Permissions:
  - ```chunkbuster.*```        - ``Gives permissions to run any command.``
  - ```chunkbuster.give```     - ``Gives permissions to use /chunkbuster give.``
- - ```chunkbuster.reload.```  - ``Gives permissions to use /chunkbuster reload.``
+ - ```chunkbuster.reload```  - ``Gives permissions to use /chunkbuster reload.``
  
 ### Config.yml, with comments explaining everything.
 ```yaml
