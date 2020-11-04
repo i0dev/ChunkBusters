@@ -13,9 +13,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
-public class Main extends JavaPlugin {
+public class ChunkBusters extends JavaPlugin {
 
 
     public static String Reload_Successful;
@@ -34,11 +37,18 @@ public class Main extends JavaPlugin {
     public static String Chunk_Buster_Place_Success;
     public static String Chunk_Buster_Place_No_Permission;
 
+    public static String Chunk_Buster_Place_In_Wilderness;
+    public static String Chunk_Buster_Place_In_Not_Own_Faction;
+
     public static ArrayList<String> Chunk_Buster_Lore = new ArrayList<>();
     public static ArrayList<String> Chunk_Buster_Ignored_Materials = new ArrayList<>();
     public static String Chunk_Buster_Item_Material;
     public static boolean Chunk_Buster_Item_Glow_Enabled;
     public static String Chunk_Buster_Name;
+
+    public static boolean Hook_Into_MassiveCraft_Factions_Enabled;
+    public static boolean Allow_Placing_In_Wilderness_Enabled;
+    public static boolean Allow_Placing_In_Other_Factions_Enabled;
 
 
     public static String Crafting_Recipe_Slot_1;
@@ -64,19 +74,29 @@ public class Main extends JavaPlugin {
             saveDefaultConfig();
         }
         reloadConfig();
+
+        // V 1.1
+        Hook_Into_MassiveCraft_Factions_Enabled = getConfig().getBoolean(generalConfigPrefix + "Hook_Into_MassiveCraft_Factions_Enabled");
+        Allow_Placing_In_Wilderness_Enabled = getConfig().getBoolean(generalConfigPrefix + "Allow_Placing_In_Wilderness_Enabled");
+        Allow_Placing_In_Other_Factions_Enabled = getConfig().getBoolean(generalConfigPrefix + "Allow_Placing_In_Other_Factions_Enabled");
+        Chunk_Buster_Place_In_Not_Own_Faction = getConfig().getString(messagingConfigPrefix + "Chunk_Buster_Place_In_Not_Own_Faction");
+        Chunk_Buster_Place_In_Wilderness = getConfig().getString(messagingConfigPrefix + "Chunk_Buster_Place_In_Wilderness");
+
+        //V 1.0.1
+        Chunk_Buster_Craft_Success = getConfig().getString(messagingConfigPrefix + "Chunk_Buster_Craft_Success");
+        Chunk_Buster_Craft_No_Permission = getConfig().getString(messagingConfigPrefix + "Chunk_Buster_Craft_No_Permission");
+        Chunk_Buster_Effects_Enabled = getConfig().getBoolean(generalConfigPrefix + "Chunk_Buster_Effects_Enabled");
+
+        // Initial Release
         Chunk_Buster_Name = getConfig().getString(generalConfigPrefix + "Chunk_Buster_Name");
         Chunk_Buster_Item_Material = getConfig().getString(generalConfigPrefix + "Chunk_Buster_Item_Material");
         Chunk_Buster_Lore = (ArrayList<String>) getConfig().getList(generalConfigPrefix + "Chunk_Buster_Lore");
         Chunk_Buster_Ignored_Materials = (ArrayList<String>) getConfig().getList(generalConfigPrefix + "Chunk_Buster_Ignored_Materials");
-        Chunk_Buster_Ignored_Materials = (ArrayList<String>) getConfig().getList(generalConfigPrefix + "Chunk_Buster_Ignored_Materials");
         Chunk_Buster_Craft_Enabled = getConfig().getBoolean(generalConfigPrefix + "Chunk_Buster_Craft_Enabled");
         Chunk_Buster_Item_Glow_Enabled = getConfig().getBoolean(generalConfigPrefix + "Chunk_Buster_Item_Glow_Enabled");
-        Chunk_Buster_Effects_Enabled = getConfig().getBoolean(generalConfigPrefix + "Chunk_Buster_Effects_Enabled");
-
         Reload_Successful = getConfig().getString(messagingConfigPrefix + "Reload_Successful");
         Reload_Usage = getConfig().getString(messagingConfigPrefix + "Reload_Usage");
         Reload_No_Permission = getConfig().getString(messagingConfigPrefix + "Reload_No_Permission");
-
         Chunk_Buster_Give_Usage = getConfig().getString(messagingConfigPrefix + "Chunk_Buster_Give_Usage");
         Chunk_Buster_Give_Unknown_Member_Error = getConfig().getString(messagingConfigPrefix + "Chunk_Buster_Give_Unknown_Member_Error");
         Chunk_Buster_Give_No_Permission = getConfig().getString(messagingConfigPrefix + "Chunk_Buster_Give_No_Permission");
@@ -85,10 +105,6 @@ public class Main extends JavaPlugin {
         Chunk_Buster_Received = getConfig().getString(messagingConfigPrefix + "Chunk_Buster_Received");
         Chunk_Buster_Place_Success = getConfig().getString(messagingConfigPrefix + "Chunk_Buster_Place_Success");
         Chunk_Buster_Place_No_Permission = getConfig().getString(messagingConfigPrefix + "Chunk_Buster_Place_No_Permission");
-
-        Chunk_Buster_Craft_Success = getConfig().getString(messagingConfigPrefix + "Chunk_Buster_Craft_Success");
-        Chunk_Buster_Craft_No_Permission = getConfig().getString(messagingConfigPrefix + "Chunk_Buster_Craft_No_Permission");
-
         Crafting_Recipe_Slot_1 = getConfig().getString(craftingRecipePrefix + "Crafting_Recipe_Slot_1");
         Crafting_Recipe_Slot_2 = getConfig().getString(craftingRecipePrefix + "Crafting_Recipe_Slot_2");
         Crafting_Recipe_Slot_3 = getConfig().getString(craftingRecipePrefix + "Crafting_Recipe_Slot_3");
@@ -107,12 +123,12 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
         getLogger().info(color("\u001B[32mEnabling Chunk Busters!\u001B[0m"));
-        new ChunkBusterListener(this);
+        getServer().getPluginManager().registerEvents(new ChunkBusterListener(), this);
         getConfig().options().copyDefaults(true);
         saveConfig();
         loadConfig();
+
     }
 
     public static String color(String string) {
@@ -226,12 +242,11 @@ public class Main extends JavaPlugin {
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        Player player = null;
-        try {
-            player = (Player) sender;
-        } catch (Exception e) {
-            player = (Player) getServer().getConsoleSender();
 
+        try {
+            sender = (Player) sender;
+        } catch (Exception error) {
+            sender = getServer().getConsoleSender();
         }
 
         if (cmd.getName().equalsIgnoreCase("ChunkBuster")) {
@@ -264,7 +279,7 @@ public class Main extends JavaPlugin {
                         new_Chunk_Buster_Received = new_Chunk_Buster_Received.replace("{amount}", GiveAmount + "");
                     }
                     if (new_Chunk_Buster_Received.contains("{player}")) {
-                        new_Chunk_Buster_Received = new_Chunk_Buster_Received.replace("{player}", player.getName() + "");
+                        new_Chunk_Buster_Received = new_Chunk_Buster_Received.replace("{player}", sender.getName() + "");
                     }
                     player2give.sendMessage(color(new_Chunk_Buster_Received));
                     sender.sendMessage(color(new_Chunk_Buster_Give_Success));
@@ -306,7 +321,7 @@ public class Main extends JavaPlugin {
                             new_Chunk_Buster_Received = new_Chunk_Buster_Received.replace("{amount}", GiveAmount + "");
                         }
                         if (new_Chunk_Buster_Received.contains("{player}")) {
-                            new_Chunk_Buster_Received = new_Chunk_Buster_Received.replace("{player}", player.getName() + "");
+                            new_Chunk_Buster_Received = new_Chunk_Buster_Received.replace("{player}", sender.getName() + "");
                         }
 
 

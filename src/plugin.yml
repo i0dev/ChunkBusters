@@ -1,28 +1,32 @@
 name: ChunkBusters
 description: This plugin allows you to summon in OR craft chunk busters! These will break all the blocks in a specific chunk!
-main: me.bukkit.i01.Main
+main: me.bukkit.i01.ChunkBusters
+softdepend: [ Factions, MassiveCore ]
 author: i01
 website: https://www.i0dev.com
 database: false
-version: 1.0.0
+version: 1.1.0
 commands:
   chunkbuster:
     description: base command
-
-
 permissions:
+  chunkbuster.reload:
+    description: Gives you permission to reload ChunkBusters plugin.
+    default: false
+  chunkbuster.give:
+    description: Gives you permission to give others ChunkBusters.
+    default: false
+  chunkbuster.place:
+    description: Gives you permission to place ChunkBusters.
+    default: true
+  chunkbuster.craft:
+    description: Gives you permission to craft ChunkBusters.
+    default: true
   chunkbuster.*:
-    description: Gives you all permissions for all Discord Server Chat commands.
+    description: Gives you all permissions for all Chunk Busters commands.
+    default: false
     children:
       chunkbuster.reload: true
       chunkbuster.give: true
       chunkbuster.place: true
       chunkbuster.craft: true
-  chunkbuster.reload:
-    description: Gives you permission to reload ChunkBusters plugin.
-  chunkbuster.give:
-    description: Gives you permission to give others ChunkBusters.
-  chunkbuster.place:
-    description: Gives you permission to place ChunkBusters.
-  chunkbuster.craft:
-    description: Gives you permission to craft ChunkBusters.

@@ -12,12 +12,13 @@
 #   - /chunkbuster give [player] <amount>
 #   - /chunkbuster reload
 #
-# There are 4 permissions as well! don't forget to assign the proper people
+# There are 5 permissions as well! don't forget to assign the proper people
 # the correct permissions
 #   - chunkbuster.*      > Gives all permissions inside the plugin.
 #   - chunkbuster.place  > Gives permissions to place chunk busters.
 #   - chunkbuster.give   > Gives permissions to give chunk busters.
-#   - chunkbuster.reload > Gives permissions to reload the plugin
+#   - chunkbuster.reload > Gives permissions to reload the plugin.
+#   - chunkbuster.craft  > Gives permissions to craft chunk busters.
 #
 # [!] After you make any changes to config, you need to use /chunkbuster reload, for the changes
 # to apply in game!
@@ -64,6 +65,12 @@ GeneralConfig:
   Chunk_Buster_Effects_Enabled: true
   #This is the material type that the ChunkBuster is.
   Chunk_Buster_Item_Material: ENDER_PORTAL_FRAME
+  #This is the switch to enable/disable the hook into MassiveCraft factions.
+  Hook_Into_MassiveCraft_Factions_Enabled: true
+  #This is the switch to enable/disable normal players from placing in wilderness.
+  Allow_Placing_In_Wilderness_Enabled: false
+  #This is the switch to enable/disable normal players from placing in other factions.
+  Allow_Placing_In_Other_Factions_Enabled: false
 
 #This is the config for all the messaging inside of the plugin!
 #You can use any color codes you want, and change any of the values.
@@ -101,6 +108,12 @@ Messaging:
   Chunk_Buster_Craft_No_Permission: '&4You do not have &cchunkbusters.craft &4permission!'
   #This is the message that sends when you don't have successfully crafted a ChunkBuster.
   Chunk_Buster_Craft_Success: '&a&lYou successfully crafted a ChunkBuster!'
+  #This is the message that sends when you try to place a chunk buster in wilderness.
+  Chunk_Buster_Place_In_Wilderness: '&cYou cannot place ChunkBusters in &2Wilderness&c!'
+  #This is the message that sends when you try to place a chunk buster in a faction you are not in.
+  Chunk_Buster_Place_In_Not_Own_Faction: '&cYou can only place ChunkBusters in your own territory!'
+
+
 #Here is the crafting recipe for the chunk buster. You can disable this if you want in the GeneralConfig section
 #The order of slots is from top left, and ends at the bottom right. You can input any material you wish.
 #If you want it to be a blank spot, just put `AIR`.
