@@ -1,0 +1,21 @@
+name: ${project.build.finalName}
+main: com.i0dev.ChunkBusters.Heart
+version: ${project.version}
+author: i01
+description: Place a chunk buster to destroy all blocks in a chunk.
+website: ${project.url}
+softdepend:
+  - Factions
+  - PlaceHolderAPI
+depend:
+  - NBTAPI
+commands:
+  ChunkBusters:
+    aliases:
+      - chunkbuster
+    description: The main command for ${project.build.finalName}
+    usage: /ChunkBusters <help/reload>
+permissions:
+  ChunkBusters.reload.cmd:
+    description: Reload config
+    default: op
