@@ -14,8 +14,11 @@ commands:
     aliases:
       - chunkbuster
     description: The main command for ${project.build.finalName}
-    usage: /ChunkBusters <help/reload>
+    usage: /ChunkBusters <help/reload/give>
 permissions:
   ChunkBusters.reload.cmd:
     description: Reload config
+    default: op
+  ChunkBusters.give.cmd:
+    description: Give a chunk buster
     default: op

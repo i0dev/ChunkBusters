@@ -23,7 +23,7 @@ public class GeneralConfig extends AbstractConfiguration {
         this.heart = heart;
     }
 
-    int blocksToBreakPerTick = 100;
+    int blocksToBreakPerTick = 500;
     boolean allowWildernessPlacement = true;
 
     ConfigItem chunkBuster = new ConfigItem("&c&lChunkBuster", 1, (short) 0, "ENDER_PORTAL_FRAME", Arrays.asList(
