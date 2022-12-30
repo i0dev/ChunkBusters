@@ -12,8 +12,10 @@ import org.bukkit.Chunk;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Dispenser;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -67,6 +69,20 @@ public class ChunkBusterHandler extends AbstractListener {
                     Location current = new Location(chunk.getWorld(), ChunkX + x, y, ChunkZ + z);
                     if (!current.getBlock().getType().equals(Material.AIR)) {
                         if (!cnf.getIgnoredMaterials().contains(current.getBlock().getType().toString().toUpperCase())) {
+
+                            if (heart.cnf().isClearTntFromChunkBustedDispensers() && Material.DISPENSER.equals(current.getBlock().getType())) {
+                                Dispenser block = (Dispenser) current.getBlock().getState();
+
+                                ItemStack[] inv = block.getInventory().getContents().clone();
+                                for (int i = 0; i < inv.length; i++) {
+                                    if (inv[i] == null) continue;
+                                    if (Material.TNT.equals(inv[i].getType())) {
+                                        inv[i] = null;
+                                    }
+                                }
+                                block.getInventory().setContents(inv);
+                            }
+
                             if (cnf.getPriorityMaterials().contains(current.getBlock().getType().toString().toUpperCase())) {
                                 priorityBlocks.add(current);
                             } else {

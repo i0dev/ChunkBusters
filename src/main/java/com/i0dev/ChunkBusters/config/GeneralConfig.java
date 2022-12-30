@@ -129,4 +129,6 @@ public class GeneralConfig extends AbstractConfiguration {
             "LADDER"
     );
 
+    boolean clearTntFromChunkBustedDispensers = true;
+
 }

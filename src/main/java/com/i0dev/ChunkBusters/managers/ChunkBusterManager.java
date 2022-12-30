@@ -81,6 +81,8 @@ public class ChunkBusterManager extends AbstractManager {
     }
 
     public void breakBlock(Location loc) {
+
+
         loc.getBlock().setType(Material.AIR);
     }
 

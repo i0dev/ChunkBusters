@@ -1,6 +1,6 @@
 name: ChunkBusters
 main: com.i0dev.ChunkBusters.Heart
-version: 2.0.0
+version: 2.1.0
 author: i01
 description: Place a chunk buster to destroy all blocks in a chunk.
 website: https://i0dev.com/
